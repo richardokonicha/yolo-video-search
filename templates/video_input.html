@@ -1,0 +1,80 @@
+<form
+  action="/"
+  method="POST"
+  enctype="multipart/form-data"
+  class="flex flex-col items-center gap-4"
+>
+  <label for="fileInput" class="w-full">
+    <span
+      class="relative block w-full border-2 border-gray-300 border-dashed rounded-lg p-6 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 cursor-pointer"
+    >
+      <svg
+        class="mx-auto h-12 w-12 text-gray-400"
+        xmlns="http://www.w3.org/2000/svg"
+        stroke="currentColor"
+        fill="none"
+        viewBox="0 0 48 48"
+        aria-hidden="true"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M8 14v20c0 4.418 7.163 8 16 8 1.381 0 2.721-.087 4-.252M8 14c0 4.418 7.163 8 16 8s16-3.582 16-8M8 14c0-4.418 7.163-8 16-8s16 3.582 16 8m0 0v14m0-4c0 4.418-7.163 8-16 8S8 28.418 8 24m32 10v6m0 0v6m0-6h6m-6 0h-6"
+        />
+      </svg>
+
+      <span
+        id="feedbackContainer"
+        class="mt-2 block text-sm font-medium text-gray-900"
+      >
+        Select Video
+      </span>
+    </span>
+    <input
+      id="fileInput"
+      type="file"
+      name="file"
+      accept="video/*"
+      required
+      class="hidden"
+    />
+  </label>
+  <!-- Add a div to display the selected file name or a success icon -->
+  <div id="feedbackContainer" class="text-sm text-gray-600"></div>
+
+  <label
+    for="label"
+    class="relative bg-gray border border-blue-600 rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500"
+  >
+    <input
+      type="text"
+      name="label"
+      required
+      placeholder="label to search in video"
+      class="p-2"
+    />
+  </label>
+
+  <input
+    type="submit"
+    value="Upload"
+    class="bg-blue-600 p-2 rounded text-white"
+  />
+</form>
+
+<script>
+  // JavaScript to handle file input change and display selected file name
+  const fileInput = document.getElementById("fileInput");
+  const feedbackContainer = document.getElementById("feedbackContainer");
+
+  fileInput.addEventListener("change", () => {
+    if (fileInput.files.length > 0) {
+      const fileName = fileInput.files[0].name;
+      // You can also display a success icon here if you prefer
+      feedbackContainer.textContent = `Selected file: ${fileName}`;
+    } else {
+      feedbackContainer.textContent = "";
+    }
+  });
+</script>
