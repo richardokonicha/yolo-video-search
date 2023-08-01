@@ -1,0 +1,9 @@
+version: '3.8'  # You can change the version as needed
+
+services:
+  webapp:
+    build: 
+      context: .  # Path to the directory containing the Dockerfile
+      dockerfile: Dockerfile  # Name of the Dockerfile
+    ports:
+      - "5001:5001"  # Map port 5000 from the container to port 5000 on the host
