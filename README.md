@@ -1,81 +1,62 @@
-# yolo-video-search
-Yolo Video Search - Search through video for objects using text, find all occurrences of specific object in video. 
+# Yolo Video Search
 
+Yolo Video Search - Search through video for objects using text, find all occurrences of specific object in video.
+Sure! Here's a README file for the Flask app: Video Search project.
 
-# Yolov5 object detection model deployment using flask
-This repo contains example apps for exposing the [yolo5](https://github.com/ultralytics/yolov5) object detection model from [pytorch hub](https://pytorch.org/hub/ultralytics_yolov5/) via a [flask](https://flask.palletsprojects.com/en/1.1.x/) api/app.
+---
 
-## Web app
-Simple app consisting of a form where you can upload an image, and see the inference result of the model in the browser. Run:
+# Flask App: Video Search
 
-`$ python3 webapp.py --port 5000`
+This is a Flask web application that allows users to upload a video, perform object detection on the video using YOLO, and view the results on the video in the browser. The app uses the Ultralytics YOLO implementation for object detection.
 
-then visit [http://localhost:5000/](http://localhost:5000/) in your browser:
+## Requirements
 
-<p align="center">
-<img src="docs/app_form.jpg" width="450">
-</p>
+- Python 3.x
+- Flask
+- Ultralytics YOLO
+- OpenCV
+- Numpy
+- Pillow
 
-<p align="center">
-<img src="docs/app_result.jpg" width="450">
-</p>
+Install the required packages using the following command:
 
-Processed images are saved in the `static` directory with a datetime for the filename.
-
-## Rest API
-Simple rest API exposing the model for consumption by another service. Run:
-
-`$ python3 restapi.py --port 5000 --model yolov5s`
-
-Then use [curl](https://curl.se/) to perform a request:
-
-`$ curl -X POST -F image=@tests/zidane.jpg 'http://localhost:5000/v1/object-detection/yolov5'`
-
-The model inference results are returned:
-
-```
-[{'class': 0,
-  'confidence': 0.8197850585,
-  'name': 'person',
-  'xmax': 1159.1403808594,
-  'xmin': 750.912902832,
-  'ymax': 711.2583007812,
-  'ymin': 44.0350036621},
- {'class': 0,
-  'confidence': 0.5667674541,
-  'name': 'person',
-  'xmax': 1065.5523681641,
-  'xmin': 116.0448303223,
-  'ymax': 713.8904418945,
-  'ymin': 198.4603881836},
- {'class': 27,
-  'confidence': 0.5661227107,
-  'name': 'tie',
-  'xmax': 516.7975463867,
-  'xmin': 416.6880187988,
-  'ymax': 717.0524902344,
-  'ymin': 429.2020568848}]
+```bash
+pip install -r requirements.txt
 ```
 
-## Run & Develop locally
-Run locally for dev, requirements mostly originate from [yolov5](https://github.com/ultralytics/yolov5/blob/master/requirements.txt):
-* `python3 -m venv venv`
-* `source venv/bin/activate`
-* `(venv) $ pip install -r requirements.txt`
-* `(venv) $ python3 restapi.py --port 5000`
+## How to Run
 
-An example python script to perform inference using [requests](https://docs.python-requests.org/en/master/) is given in `tests/test_request.py`
+To run the Flask app, execute the following command:
 
-## Docker
-The example dockerfile shows how to expose the rest API:
-```
-# Build
-docker build -t yolov5-flask .
-# Run
-docker run -p 5000:5000 yolov5-flask:latest
+```bash
+python app.py --port <PORT_NUMBER>
 ```
 
-## reference
-- https://github.com/ultralytics/yolov5
-- https://github.com/jzhang533/yolov5-flask (this repo was forked from here)
-- https://github.com/avinassh/pytorch-flask-api-heroku
+```
+make run
+```
+
+Replace `<PORT_NUMBER>` with the desired port number (default is 5001).
+
+## Usage
+
+1. Start the Flask app using the above command.
+2. Open your web browser and go to `http://localhost:<PORT_NUMBER>/` (replace `<PORT_NUMBER>` with the actual port number used).
+3. Upload a video file using the provided form and specify a label for object detection.
+4. Click the "Submit" button to process the video and view the results.
+5. The app will detect the specified objects in the video, draw bounding boxes around them, and display the video with the detection results.
+
+## File Structure
+
+- `app.py`: The main Flask application file that handles routes and runs the app.
+- `utils.py`: Contains the function for processing the video and performing object detection.
+- `static/`: Directory to store the saved video clips.
+- `templates/`: Directory containing the HTML templates for rendering the web pages.
+
+## Acknowledgments
+
+This app uses the Ultralytics YOLO implementation for object detection. The Ultralytics YOLO repository can be found at: https://github.com/ultralytics/yolov5
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
